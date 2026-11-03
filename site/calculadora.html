@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="es-DO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Calculadora de financiamiento | TH Arenas</title>
+<meta name="description" content="Calcula la inicial, la cuota mensual y el ingreso recomendado para tu apartamento en TH Arenas, Bávaro. Ajusta la tasa de tu banco y el plazo del préstamo.">
+<link rel="canonical" href="https://TU-DOMINIO.com/calculadora.html">
+<meta name="theme-color" content="#132b44">
+<meta name="robots" content="index,follow,max-image-preview:large">
+
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_DO">
+<meta property="og:site_name" content="TH Arenas">
+<meta property="og:title" content="Calculadora de financiamiento | TH Arenas">
+<meta property="og:description" content="Estima tu inicial y tu cuota mensual según la tasa de tu banco. Apartamentos desde US$88,075 en Bávaro, Punta Cana.">
+<meta property="og:url" content="https://TU-DOMINIO.com/calculadora.html">
+<meta property="og:image" content="https://TU-DOMINIO.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<nav class="top" aria-label="Principal">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="TH Arenas, inicio"><img width="520" height="88" decoding="async" src="assets/img/logo.webp" alt="TH Arenas"></a>
+    <div class="navlinks" id="menu">
+      <a href="proyecto.html">Proyecto</a><a href="precios.html">Precios</a><a href="calculadora.html" class="on" aria-current="page">Calculadora</a><a href="planos.html">Planos</a>
+      <a href="amenidades.html">Amenidades</a><a href="preguntas.html">Preguntas</a><a href="ubicacion.html">Ubicación</a>
+    </div>
+    <button class="navtoggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    <a class="btn btn-primary navcta" href="contacto.html">Agendar visita</a>
+  </div>
+</nav>
+
+<main id="main">
+<section class="pagehead">
+  <div class="wrap">
+    <div class="tag">Calculadora</div>
+    <h1>Calcula tu nueva inversión</h1>
+    <p>Pon la tasa que te ofrece tu banco y verás cuánto necesitas de inicial, cuánto pagarías al mes y el costo total.</p>
+  </div>
+</section>
+
+<section id="calc">
+  <div class="wrap">
+    <div class="badges">
+      <div class="bankbar"><img width="700" height="232" decoding="async" class="bplogo" src="assets/img/banco-popular.webp" alt="Banco Popular"><span>TH Arenas cuenta con el respaldo de <b>Banco Popular</b> para financiar tu apartamento.</span></div>
+      <div class="bankbar"><img width="300" height="286" decoding="async" class="seal" src="assets/img/sello-confotur.webp" alt="Sello Confotur"><span>Proyecto aprobado por <b>Confotur</b>: sin impuesto de transferencia y sin IPI por 15 años.</span></div>
+    </div>
+    <div class="calc">
+      <form class="cin" id="calcForm">
+        <div class="field">Elige tu apartamento <small style="font-weight:600;color:#1f8a4c">Descuento incluido</small>
+          <div class="tipos" id="cTipos">
+            <button type="button" data-k="1"><small>Tipo B · 49 m²</small>1 habitación<strong>$88,075.55</strong><em class="desc">−US$6,000</em></button>
+            <button type="button" data-k="2"><small>Tipo A · 69 m²</small>2 habitaciones<strong>$119,265.00</strong><em class="desc">−US$8,000</em></button>
+            <button type="button" data-k="3"><small>Tipo C · 105 m²</small>3 habitaciones<strong>$148,810.00</strong><em class="desc">−US$10,000</em></button>
+          </div>
+        </div>
+        <label class="field" for="cPrecio">Precio del apartamento (US$)
+          <input type="number" id="cPrecio" min="0" step="100" inputmode="decimal">
+          <small id="cPrecioNota">Precio de lista. El descuento se aplica en el resultado.</small>
+        </label>
+        <div class="field">Inicial
+          <div class="row"><input type="range" id="cIni" min="10" max="50" step="5" value="20" aria-label="Porcentaje de inicial"><span class="val" id="cIniV">20%</span></div>
+        </div>
+        <label class="field" for="cTasa">Tasa anual del banco (%)
+          <input type="number" id="cTasa" min="0" max="30" step="0.05" value="12" inputmode="decimal">
+          <small>12% es solo un ejemplo. Escribe la tasa que te ofrece tu banco.</small>
+        </label>
+        <div class="field">Plazo del préstamo
+          <div class="row"><input type="range" id="cPlazo" min="5" max="30" step="1" value="20" aria-label="Plazo en años"><span class="val" id="cPlazoV">20 años</span></div>
+        </div>
+        <p class="cnote">TH Arenas cuenta con la <b>Ley Confotur</b>, que exonera tu compra del impuesto de transferencia. Los gastos de cierre del préstamo, como tasación, seguros y honorarios legales, los establece cada banco y no están incluidos en este cálculo.</p>
+      </form>
+      <div class="cout" aria-live="polite">
+        <div class="cuota">
+          <div class="lbl">Cuota mensual estimada</div>
+          <div class="big" id="oCuota">—</div>
+          <div class="sub" id="oCuotaSub">durante 20 años</div>
+        </div>
+        <div class="split"><i class="si" id="barI"></i><i class="sf" id="barF"></i></div>
+        <div class="legendrow"><span><b style="background:var(--orange)"></b>Inicial</span><span><b style="background:var(--navy)"></b>Préstamo del banco</span></div>
+        <ul class="rows">
+          <li><span>Precio de lista</span><span id="oLista">—</span></li>
+          <li class="disc"><span>Descuento TH Arenas</span><span id="oDesc">—</span></li>
+          <li class="total"><span>Precio con descuento</span><span id="oFinal">—</span></li>
+          <li><span>Inicial (<span id="oIniP">20%</span>)</span><span id="oIni">—</span></li>
+          <li><span>Monto a financiar</span><span id="oPrest">—</span></li>
+          <li><span>Ingreso mensual recomendado</span><span id="oIngreso">—</span></li>
+        </ul>
+        <p class="hint">El ingreso recomendado supone que la cuota no pasa del 30% de tus ingresos, una referencia común en bancos. Este cálculo es una referencia: la tasa final, la aprobación y los gastos de cierre los define cada banco.</p>
+        <div class="ctas">
+          <a class="btn btn-primary" href="contacto.html" id="calcCta">Agendar visita con estos números</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ctaband">
+  <div class="wrap">
+    <div>
+      <h2>¿Te gustó el resultado?</h2>
+      <p>Compártenos estos números y un asesor te ayuda a confirmar la aprobación con tu banco.</p>
+    </div>
+    <div class="ctas">
+      <a class="btn btn-primary" href="contacto.html">Agendar visita</a>
+      <a class="btn btn-ghost" href="precios.html">Ver precios</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap"><span>© 2026 TH Arenas · Bávaro, Punta Cana, República Dominicana</span><span>Oficina de ventas: Piantini, Santo Domingo</span></div>
+  <div class="wrap footnav">
+    <a href="proyecto.html">Proyecto</a><a href="precios.html">Precios</a><a href="calculadora.html">Calculadora</a><a href="planos.html">Planos</a><a href="amenidades.html">Amenidades</a><a href="preguntas.html">Preguntas</a><a href="ubicacion.html">Ubicación</a><a href="contacto.html">Contacto</a>
+  </div>
+</footer>
+<div class="lb" id="lb" hidden><img id="lbImg" alt=""></div>
+
+<div class="sticky">
+  <a class="btn btn-primary" href="contacto.html">Agendar visita</a>
+  <a class="btn btn-outline" href="precios.html">Precios</a>
+</div>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
