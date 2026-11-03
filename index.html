@@ -9,9 +9,9 @@
 <meta name="theme-color" content="#132b44">
 <meta name="robots" content="index,follow,max-image-preview:large">
 
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_DO">
@@ -35,25 +35,26 @@
 <!-- Aquí va el Pixel de Meta / Google Analytics / Tag Manager cuando lo tengas -->
 </head>
 <body>
-<a class="skip" href="#unidad">Saltar al contenido</a>
+<a class="skip" href="#main">Saltar al contenido</a>
 <nav class="top" aria-label="Principal">
   <div class="wrap">
-    <a class="brand" href="#unidad" aria-label="TH Arenas, inicio"><img width="520" height="88" decoding="async" src="assets/img/logo.webp" alt="TH Arenas"></a>
-    <div class="navlinks">
-      <a href="#unidad">Proyecto</a><a href="#precio">Precios</a><a href="#calc">Calculadora</a><a href="#recorrido">Planos</a>
-      <a href="#compra">Amenidades</a><a href="#confianza">Preguntas</a><a href="#ubicacion">Ubicación</a>
+    <a class="brand" href="index.html" aria-label="TH Arenas, inicio"><img width="520" height="88" decoding="async" src="assets/img/logo.webp" alt="TH Arenas"></a>
+    <div class="navlinks" id="menu">
+      <a href="proyecto.html">Proyecto</a><a href="precios.html">Precios</a><a href="calculadora.html">Calculadora</a><a href="planos.html">Planos</a>
+      <a href="amenidades.html">Amenidades</a><a href="preguntas.html">Preguntas</a><a href="ubicacion.html">Ubicación</a>
     </div>
-    <a class="btn btn-primary navcta" href="#contacto">Agendar visita</a>
+    <button class="navtoggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    <a class="btn btn-primary navcta" href="contacto.html">Agendar visita</a>
   </div>
 </nav>
 
-<!-- 1. UNIDAD Y REALIDAD -->
+<main id="main">
+<!-- HERO -->
 <section class="hero" id="unidad">
   <div class="hbg" aria-hidden="true"><img fetchpriority="high" width="1600" height="1054" decoding="async" class="hs on" src="assets/img/hero-1.webp" alt="Vista aérea de TH Arenas"><img width="1600" height="899" decoding="async" class="hs" data-src="assets/img/hero-2.webp" alt="Calle interna de TH Arenas"><img width="1600" height="899" decoding="async" class="hs" data-src="assets/img/hero-3.webp" alt="Edificios de TH Arenas"></div>
   <div class="hdots"><button type="button" class="hd on" aria-label="Foto 1"></button><button type="button" class="hd" aria-label="Foto 2"></button><button type="button" class="hd" aria-label="Foto 3"></button></div>
   <span class="imgtag">Fotos reales de TH Arenas</span>
   <div class="wrap">
-    <div class="status"><span class="dot"></span>Terminado y listo para entrega</div>
     <h1>Apartamentos listos para entrega en Bávaro, Punta Cana</h1>
     <p class="sub">Apartamentos de 1, 2 y 3 habitaciones con piscina, gimnasio, casa club y plaza comercial dentro del proyecto. A 2 minutos del Supermercado Iberia, 5 minutos del Hospital IMG y 7 minutos de Playa El Cortecito.</p>
     <div class="trustrow"><div class="bank"><span>Con el respaldo de</span><img width="700" height="232" decoding="async" class="bplogo" src="assets/img/banco-popular.webp" alt="Banco Popular"></div><img width="300" height="286" decoding="async" class="seal" src="assets/img/sello-confotur.webp" alt="Sello Confotur: proyecto turístico clasificado"></div>
@@ -63,19 +64,19 @@
       <div><span>Confotur</span><b>Exento</b><small>de impuesto de transferencia e IPI</small></div>
     </div>
     <div class="ctas">
-      <a class="btn btn-primary" href="#calc">Calcula tu nueva inversión</a>
-      <a class="btn btn-ghost" href="#precio">Ver apartamentos disponibles</a>
+      <a class="btn btn-primary" href="calculadora.html">Calcula tu nueva inversión</a>
+      <a class="btn btn-ghost" href="precios.html">Ver apartamentos disponibles</a>
     </div>
   </div>
 </section>
-<div class="promo"><span>Reserva tu apartamento con solo <b>US$500</b></span><a href="#contacto">Reservar ahora</a></div>
+<div class="promo"><span>Reserva tu apartamento con solo <b>US$500</b></span><a href="contacto.html">Reservar ahora</a></div>
 
-<!-- 2. PRECIO COMPLETO -->
+<!-- PRECIOS -->
 <section id="precio">
   <div class="wrap">
     <div class="tag">Disponibles</div>
     <h2>Apartamentos disponibles</h2>
-    <p class="lead">Elige cuántas habitaciones necesitas. Cada opción muestra su precio, metraje, nivel y baños.</p>
+    <p class="lead">Elige cuántas habitaciones necesitas. Cada opción muestra su precio, metraje, nivel y baños, con el descuento de TH Arenas incluido.</p>
     <div class="tabs" id="tabs" role="group" aria-label="Número de habitaciones">
       <button type="button" id="tab1" data-k="1" class="on">1 habitación</button>
       <button type="button" id="tab2" data-k="2">2 habitaciones</button>
@@ -106,11 +107,12 @@
           <li>Entrega<b>Inmediata, al completar el pago</b></li>
         </ul>
         <div class="ctas">
-          <a class="btn btn-primary" href="#calc" id="toCalc">Calcula tu nueva inversión</a>
+          <a class="btn btn-primary" href="calculadora.html" id="toCalc">Calcula tu nueva inversión</a>
           <a class="btn btn-outline" href="https://docs.google.com/spreadsheets/d/12J4uvlU9EZPu6dcpCd6Xo4qddNP1F5kN/edit" target="_blank" rel="noopener">Disponibilidad</a>
         </div>
       </div>
     </div>
+    <p class="note"><a href="precios.html">Ver la página completa de precios →</a></p>
   </div>
 </section>
 
@@ -167,34 +169,20 @@
         </ul>
         <p class="hint">El ingreso recomendado supone que la cuota no pasa del 30% de tus ingresos, una referencia común en bancos. Este cálculo es una referencia: la tasa final, la aprobación y los gastos de cierre los define cada banco.</p>
         <div class="ctas">
-          <a class="btn btn-primary" href="#contacto" id="calcCta">Agendar visita con estos números</a>
+          <a class="btn btn-primary" href="contacto.html" id="calcCta">Agendar visita con estos números</a>
         </div>
       </div>
     </div>
+    <p class="note"><a href="calculadora.html">Abrir la calculadora en su propia página →</a></p>
   </div>
 </section>
 
-<!-- 3. RECORRIDO -->
-<section id="recorrido">
-  <div class="wrap">
-    <div class="tag">Planos</div>
-    <h2>Distribución de cada apartamento</h2>
-    <p class="lead">Toca un plano para verlo en grande.</p>
-    <!-- VIDEO: cuando tengas el enlace del video profesional, pega aquí un iframe de YouTube/Vimeo:
-    <div class="video wide solo"><iframe src="https://www.youtube.com/embed/ID" title="Video de TH Arenas" loading="lazy" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></div> -->
-    <div class="planos">
-      <figure class="pcard"><div class="pimg"><img width="800" height="734" decoding="async" src="assets/img/plano-tipo-b.webp" alt="Plano del apartamento Tipo B" loading="lazy"></div><figcaption><b>Tipo B · 1 habitación</b><small>49 m² · 1 baño · Niveles 1 al 4</small></figcaption></figure>
-      <figure class="pcard"><div class="pimg"><img width="794" height="800" decoding="async" src="assets/img/plano-tipo-a.webp" alt="Plano del apartamento Tipo A" loading="lazy"></div><figcaption><b>Tipo A · 2 habitaciones</b><small>69 m² · 2 baños · Niveles 1 al 4</small></figcaption></figure>
-      <figure class="pcard"><div class="pimg"><img width="797" height="800" decoding="async" src="assets/img/plano-tipo-c.webp" alt="Plano del apartamento Tipo C" loading="lazy"></div><figcaption><b>Tipo C · 3 habitaciones</b><small>105 m² · 2 baños · Niveles 1 al 4</small></figcaption></figure>
-    </div>
-  </div>
-</section>
-
-<!-- 4. QUE INCLUYE -->
+<!-- AMENIDADES -->
 <section id="compra">
   <div class="wrap">
-    
-    <p class="lead">Las amenidades del proyecto ya están construidas y en funcionamiento.</p>
+    <div class="tag">Amenidades</div>
+    <h2>Amenidades del proyecto</h2>
+    <p class="lead">Las amenidades de TH Arenas ya están construidas y en funcionamiento. No son renders: son espacios que puedes usar desde el primer día.</p>
     <div class="agrid">
       <figure class="acard"><div class="aphoto"><img width="800" height="800" decoding="async" src="assets/img/amenidad-piscina.webp" alt="Piscina de TH Arenas" loading="lazy"></div><figcaption>Piscina<span class="ok">En funcionamiento</span></figcaption></figure>
       <figure class="acard"><div class="aphoto"><img width="800" height="446" decoding="async" src="assets/img/amenidad-gimnasio.webp" alt="Gimnasio de TH Arenas" loading="lazy"></div><figcaption>Gimnasio<span class="ok">En funcionamiento</span></figcaption></figure>
@@ -204,37 +192,16 @@
       <figure class="acard"><div class="aphoto"><img width="800" height="446" decoding="async" src="assets/img/amenidad-area-infantil.webp" alt="Área infantil de TH Arenas" loading="lazy"></div><figcaption>Área infantil<span class="ok">En funcionamiento</span></figcaption></figure>
       <figure class="acard"><div class="aphoto"><img width="800" height="450" decoding="async" src="assets/img/amenidad-plaza-comercial.webp" alt="Plaza comercial de TH Arenas" loading="lazy"></div><figcaption>Plaza comercial<span class="ok">En funcionamiento</span></figcaption></figure>
     </div>
+    <p class="note"><a href="amenidades.html">Ver todas las amenidades →</a></p>
   </div>
 </section>
 
-<!-- 5. PREGUNTAS FRECUENTES -->
-<section id="confianza">
-  <div class="wrap">
-    <div class="tag">Preguntas frecuentes</div>
-    <h2>Lo que respalda tu compra</h2>
-    <p class="lead">Las respuestas a lo que más nos preguntan antes de comprar.</p>
-    <div class="faq" style="margin-top:0">
-      <details><summary>¿El apartamento está terminado?</summary><div class="ans">Sí. TH Arenas está terminado y cada apartamento está listo para entrega. Lo que ves en tu visita es exactamente lo que recibes.</div></details>
-      <details><summary>¿Cuánto cuesta cada apartamento?</summary><div class="ans"><b>1 habitación</b> (Tipo B, 49 m²): US$88,075.55<br><b>2 habitaciones</b> (Tipo A, 69 m²): US$119,265.00<br><b>3 habitaciones</b> (Tipo C, 105 m²): US$148,810.00</div></details>
-      <details><summary>¿Con cuánto reservo?</summary><div class="ans">Separas tu apartamento con solo US$500. Escríbenos y un asesor te acompaña en el proceso.</div></details>
-      <details><summary>¿Puedo financiar con un banco?</summary><div class="ans">Sí. Puedes financiar tu apartamento con el banco de tu preferencia. Nuestro equipo te orienta en todo el proceso. Usa la <a href="#calc">calculadora</a> para estimar tu inicial y tu cuota mensual.</div></details>
-      <details><summary>¿Qué es Confotur y qué beneficios me da?</summary><div class="ans"><img width="300" height="286" decoding="async" class="seal" src="assets/img/sello-confotur.webp" alt="Sello Confotur">La Ley 158-01, conocida como Ley Confotur, es un incentivo del Estado dominicano para impulsar el desarrollo turístico y atraer inversión en zonas estratégicas del país. Al comprar en TH Arenas, un proyecto aprobado por Confotur, obtienes:<ul><li>Exoneración del impuesto de transferencia al momento de la compra.</li><li>Exoneración del IPI (Impuesto a la Propiedad Inmobiliaria) por 15 años.</li><li>Mayor rentabilidad gracias a menores cargas fiscales.</li><li>Seguridad jurídica y respaldo del Estado al proyecto.</li></ul></div></details>
-      <details><summary>¿En cuánto tiempo recibo las llaves?</summary><div class="ans">Recibes las llaves de tu apartamento al completar el pago total del inmueble, ya sea con fondos propios o con el desembolso de tu banco.</div></details>
-      <details><summary>¿Puedo ver el apartamento exacto que voy a comprar?</summary><div class="ans">Sí. Te invitamos a visitar el apartamento que vas a comprar antes de cerrar tu compra. Agenda tu visita presencial o por videollamada.</div></details>
-      <details><summary>¿Se puede poner en renta corta?</summary><div class="ans">Sí. TH Arenas permite renta corta, una gran opción si buscas generar ingresos con tu inversión en Bávaro.</div></details>
-      <details><summary>¿Cuánto es el mantenimiento?</summary><div class="ans"><b>1 habitación:</b> RD$2,530 al mes<br><b>2 habitaciones:</b> RD$3,560 al mes<br><b>3 habitaciones:</b> RD$5,416 al mes</div></details>
-      <details><summary>¿Qué documentos necesito para comprar?</summary><div class="ans"><ul><li>Cédula de identidad. Si eres extranjero, tu declaración de impuestos (taxes).</li><li>Estados bancarios de los últimos 3 meses.</li><li>Carta laboral, si aplica.</li></ul></div></details>
-      <details><summary>¿Puedo comprar desde el extranjero?</summary><div class="ans">Sí. Puedes comprar tu apartamento desde cualquier parte del mundo. Te mostramos el apartamento por videollamada y te acompañamos en cada paso del proceso.</div></details>
-    </div>
-  </div>
-</section>
-
-<!-- 6. UBICACION -->
+<!-- UBICACION -->
 <section id="ubicacion">
   <div class="wrap">
     <div class="tag">Ubicación</div>
     <h2>Todo lo que necesitas, cerca de casa</h2>
-    <p class="lead">Supermercado, centros de salud, gimnasio y playa a pocos minutos de TH Arenas.</p>
+    <p class="lead">Supermercado, centros de salud, gimnasio y playa a pocos minutos de TH Arenas, en Bávaro, Punta Cana.</p>
     <img width="1200" height="717" decoding="async" class="mapimg" alt="Mapa de TH Arenas con los puntos de interés cercanos" src="assets/img/mapa-ubicacion.webp">
     <ul class="routes2">
       <li><div class="min">1<small> min</small></div><span>Atlético Punta Cana<em>Fitness &amp; Spa</em></span></li>
@@ -244,51 +211,51 @@
       <li><div class="min">7<small> min</small></div><span>Playa El Cortecito<em>Punta Cana</em></span></li>
       <li><div class="min">10<small> min</small></div><span>Los Corales Beach<em>Bávaro</em></span></li>
     </ul>
-    <p class="note"><a href="https://maps.app.goo.gl/MXg1Jkmmio3VTDMV6" target="_blank" rel="noopener">Abrir ubicación en Google Maps</a></p>
+    <p class="note"><a href="https://maps.app.goo.gl/MXg1Jkmmio3VTDMV6" target="_blank" rel="noopener">Abrir ubicación en Google Maps</a> · <a href="ubicacion.html">Ver la página de ubicación →</a></p>
   </div>
 </section>
 
-<!-- 7. CONTACTO -->
-<section class="contact" id="contacto">
-  <div class="wrap cgrid">
-    <div class="side">
-      <div class="tag">Contacto</div>
-      <h2>Habla con un asesor</h2>
-      <p class="lead">Te asignamos un asesor según lo que buscas y coordinamos visita presencial o videollamada.</p>
-      <p><a href="tel:+18099090206">809-909-0206</a> · <a href="tel:+18095675667">(809) 567-5667</a></p>
-      <p><a href="mailto:ventas@therrestra.com">ventas@therrestra.com</a></p>
-      <p><a href="mailto:ventasth@therrestra.com">ventasth@therrestra.com</a></p>
-      <p>Piantini, Santo Domingo</p>
+<!-- EXPLORA (resto de páginas) -->
+<section id="explora">
+  <div class="wrap">
+    <div class="tag">Explora también</div>
+    <h2>Conoce el resto del proyecto</h2>
+    <p class="lead">Estas secciones tienen su propia página para verlas con detalle.</p>
+    <div class="explore">
+      <a class="xcard" href="proyecto.html"><b>Proyecto</b><span>Un proyecto terminado en Bávaro, con fotos reales y respaldo de Banco Popular y Confotur.</span><em>Conocer el proyecto →</em></a>
+      <a class="xcard" href="planos.html"><b>Planos</b><span>La distribución de los apartamentos Tipo A, B y C, con metraje y baños.</span><em>Ver planos →</em></a>
+      <a class="xcard" href="preguntas.html"><b>Preguntas</b><span>Reservas, Confotur, financiamiento, mantenimiento y documentos para comprar.</span><em>Leer respuestas →</em></a>
+      <a class="xcard" href="contacto.html"><b>Contacto</b><span>Agenda una visita presencial o por videollamada y recibe disponibilidad y costo completo.</span><em>Hablar con un asesor →</em></a>
     </div>
-    <form class="form" id="leadForm" novalidate>
-      <label for="fNombre">Nombre<input id="fNombre" name="nombre" placeholder="Tu nombre" autocomplete="name" required></label>
-      <label for="fWa">WhatsApp<input id="fWa" name="whatsapp" placeholder="809-000-0000" inputmode="tel" autocomplete="tel" required></label>
-      <div class="full lbl">Uso deseado
-        <div class="chips" id="usoChips"><button type="button">Vivir</button><button type="button">Inversión / renta</button><button type="button">Segunda vivienda</button></div></div>
-      <div class="full lbl">Habitaciones
-        <div class="chips" id="habChips"><button type="button" class="on">1</button><button type="button">2</button><button type="button">3</button></div></div>
-      <label for="fPres">Presupuesto<select id="fPres" name="presupuesto"><option>Hasta $90,000</option><option>$90,000–$130,000</option><option>Más de $130,000</option></select></label>
-      <label for="fIni">Tipo de visita<select id="fIni" name="visita"><option>Presencial en el proyecto</option><option>Videollamada</option></select></label>
-      <label for="fPlazo">¿Cuándo quieres recibir el apartamento?<select id="fPlazo" name="entrega"><option>De inmediato</option><option>Este mes</option><option>1–3 meses</option><option>3–6 meses</option><option>Solo explorando</option></select></label>
-      <label for="fHora">Horario preferido<select id="fHora" name="horario"><option>Mañana</option><option>Tarde</option><option>Fin de semana</option></select></label>
-      <input class="hp" type="text" name="web" id="fWeb" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <div class="full ctas">
-        <button class="btn btn-primary" type="submit">Agendar visita o videollamada</button>
-        <button class="btn btn-outline" type="button" id="btnCosto">Recibir disponibilidad y costo completo</button>
-      </div>
-      <p class="sent" id="sent" role="status" aria-live="polite" hidden></p>
-    </form>
   </div>
 </section>
 
-<footer><div class="wrap"><span>© 2026 TH Arenas · Bávaro, Punta Cana, República Dominicana</span><span>Oficina de ventas: Piantini, Santo Domingo</span></div></footer>
+<section class="ctaband">
+  <div class="wrap">
+    <div>
+      <h2>¿Listo para conocer tu próximo apartamento?</h2>
+      <p>Te asignamos un asesor según lo que buscas y coordinamos la visita.</p>
+    </div>
+    <div class="ctas">
+      <a class="btn btn-primary" href="contacto.html">Agendar visita</a>
+      <a class="btn btn-ghost" href="precios.html">Ver precios</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap"><span>© 2026 TH Arenas · Bávaro, Punta Cana, República Dominicana</span><span>Oficina de ventas: Piantini, Santo Domingo</span></div>
+  <div class="wrap footnav">
+    <a href="proyecto.html">Proyecto</a><a href="precios.html">Precios</a><a href="calculadora.html">Calculadora</a><a href="planos.html">Planos</a><a href="amenidades.html">Amenidades</a><a href="preguntas.html">Preguntas</a><a href="ubicacion.html">Ubicación</a><a href="contacto.html">Contacto</a>
+  </div>
+</footer>
 <div class="lb" id="lb" hidden><img id="lbImg" alt=""></div>
 
 <div class="sticky">
-  <a class="btn btn-primary" href="#contacto">Agendar visita</a>
-  <a class="btn btn-outline" href="#precio">Precios</a>
+  <a class="btn btn-primary" href="contacto.html">Agendar visita</a>
+  <a class="btn btn-outline" href="precios.html">Precios</a>
 </div>
-
 
 <noscript><p style="padding:16px;text-align:center">Activa JavaScript para usar la calculadora y la galería. También puedes escribirnos por WhatsApp al 809-909-0206.</p></noscript>
 <script src="assets/js/main.js" defer></script>

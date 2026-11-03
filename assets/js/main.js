@@ -5,51 +5,70 @@ const CONFIG={
 };
 const descuentos={"1":6000,"2":8000,"3":10000};
 const fotos={"3":[{"src": "assets/img/apto-3h-01.webp", "cap": "Comedor, cocina y sala"}, {"src": "assets/img/apto-3h-02.webp", "cap": "Comedor y recibidor"}, {"src": "assets/img/apto-3h-03.webp", "cap": "Habitación principal"}, {"src": "assets/img/apto-3h-04.webp", "cap": "Habitación 2"}, {"src": "assets/img/apto-3h-05.webp", "cap": "Habitación 3"}],"1":[{"src": "assets/img/apto-1h-01.webp", "cap": "Comedor y sala"}, {"src": "assets/img/apto-1h-02.webp", "cap": "Comedor y sala"}, {"src": "assets/img/apto-1h-03.webp", "cap": "Sala"}, {"src": "assets/img/apto-1h-04.webp", "cap": "Habitación"}, {"src": "assets/img/apto-1h-05.webp", "cap": "Habitación"}, {"src": "assets/img/apto-1h-06.webp", "cap": "Cocina"}, {"src": "assets/img/apto-1h-07.webp", "cap": "Baño"}],"2":[{"src": "assets/img/apto-2h-01.webp", "cap": "Sala, comedor y cocina"}, {"src": "assets/img/apto-2h-02.webp", "cap": "Comedor y sala"}, {"src": "assets/img/apto-2h-03.webp", "cap": "Habitación principal"}, {"src": "assets/img/apto-2h-04.webp", "cap": "Segunda habitación"}]};
-let gK="1",gI=0;
-function showFoto(i){
-  const list=fotos[gK]||[]; if(!list.length)return; gI=(i+list.length)%list.length;
-  $("gImg").src=list[gI].src; $("gImg").alt=list[gI].cap; $("planCap").textContent=data[gK].tipo+" · "+list[gI].cap;
-  document.querySelectorAll("#gThumbs button").forEach((b,j)=>b.classList.toggle("on",j===gI));
-}
-function setGaleria(k){
-  gK=k; const list=fotos[k]||[]; const has=list.length>0;
-  $("gImg").hidden=!has; $("gPrev").hidden=$("gNext").hidden=list.length<2;
-  $("gThumbs").innerHTML=list.map((f,j)=>'<button type="button" aria-label="'+f.cap+'"><img alt="" width="56" height="40" loading="lazy" src="'+f.src.replace('.webp','-t.webp')+'"></button>').join("");
-  $("gThumbs").querySelectorAll("button").forEach((b,j)=>b.addEventListener("click",()=>showFoto(j)));
-  if(has)showFoto(0); else $("planCap").textContent="Foto real del apartamento "+data[k].tipo+" (pendiente)";
-}
 const data={
   "1":{tipo:"Tipo B",nombre:"1 habitación",m2:"49 m²",precio:88075.55,banos:"1",mant:"RD$2,530"},
   "2":{tipo:"Tipo A",nombre:"2 habitaciones",m2:"69 m²",precio:119265,banos:"2",mant:"RD$3,560"},
   "3":{tipo:"Tipo C",nombre:"3 habitaciones",m2:"105 m²",precio:148810,banos:"2",mant:"RD$5,416"}
 };
 const $=id=>document.getElementById(id);
+const $$=(sel,root=document)=>Array.from(root.querySelectorAll(sel));
 const fmt=n=>"$"+n.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
+
+let gK="1",gI=0;
+function showFoto(i){
+  const list=fotos[gK]||[]; if(!list.length)return;
+  const img=$("gImg"),cap=$("planCap"); if(!img||!cap)return;
+  gI=(i+list.length)%list.length;
+  img.src=list[gI].src; img.alt=list[gI].cap; cap.textContent=data[gK].tipo+" · "+list[gI].cap;
+  $$("#gThumbs button").forEach((b,j)=>b.classList.toggle("on",j===gI));
+}
+function setGaleria(k){
+  gK=k; const list=fotos[k]||[], has=list.length>0;
+  const img=$("gImg"),prev=$("gPrev"),next=$("gNext"),thumbs=$("gThumbs"),cap=$("planCap");
+  if(!img||!prev||!next||!thumbs||!cap)return;
+  img.hidden=!has; prev.hidden=next.hidden=list.length<2;
+  thumbs.innerHTML=list.map((f,j)=>'<button type="button" aria-label="'+f.cap+'"><img alt="" width="56" height="40" loading="lazy" src="'+f.src.replace('.webp','-t.webp')+'"></button>').join("");
+  $$("button",thumbs).forEach((b,j)=>b.addEventListener("click",()=>showFoto(j)));
+  if(has)showFoto(0); else cap.textContent="Foto real del apartamento "+data[k].tipo+" (pendiente)";
+}
 function pick(k){
   const d=data[k];
-  document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("on",b.dataset.k===k));
-  document.querySelectorAll("#habChips button").forEach((b,i)=>b.classList.toggle("on",String(i+1)===k));
-  $("tipo").textContent=d.tipo; $("m2").textContent=d.m2; $("banos").textContent=d.banos;
+  $$("#tabs button").forEach(b=>b.classList.toggle("on",b.dataset.k===k));
+  $$("#habChips button").forEach((b,i)=>b.classList.toggle("on",String(i+1)===k));
+  const tipo=$("tipo"),m2=$("m2"),banos=$("banos");
+  if(tipo)tipo.textContent=d.tipo;
+  if(m2)m2.textContent=d.m2;
+  if(banos)banos.textContent=d.banos;
   setGaleria(k);
   setCalcTipo(k);
-  if(d.precio){
-    $("precioTxt").textContent=fmt(d.precio);
-    $("pDisc").textContent="Descuento de US$"+descuentos[k].toLocaleString("en-US");
-    $("pMant").textContent=d.mant;
-  }else{
-    $("precioTxt").innerHTML='<span class="ph">$000,000</span><small>Precio por confirmar con ventas</small>';
+  const precioTxt=$("precioTxt"),pDisc=$("pDisc"),pMant=$("pMant");
+  if(precioTxt&&pDisc&&pMant){
+    if(d.precio){
+      precioTxt.textContent=fmt(d.precio);
+      pDisc.textContent="Descuento de US$"+descuentos[k].toLocaleString("en-US");
+      pMant.textContent=d.mant;
+    }else{
+      precioTxt.innerHTML='<span class="ph">$000,000</span><small>Precio por confirmar con ventas</small>';
+    }
   }
 }
-document.querySelectorAll("#tabs button").forEach(b=>b.addEventListener("click",()=>pick(b.dataset.k)));
-document.querySelectorAll("#habChips button").forEach((b,i)=>b.addEventListener("click",()=>pick(String(i+1))));
-document.querySelectorAll("#usoChips button").forEach(b=>b.addEventListener("click",()=>{
-  b.parentNode.querySelectorAll("button").forEach(x=>x.classList.remove("on"));b.classList.add("on");}));
-$("leadForm").addEventListener("submit",e=>{e.preventDefault();enviar("visita");});
-$("btnCosto").addEventListener("click",()=>enviar("costo"));
+
+$$("#tabs button").forEach(b=>b.addEventListener("click",()=>pick(b.dataset.k)));
+$$("#habChips button").forEach((b,i)=>b.addEventListener("click",()=>pick(String(i+1))));
+$$("#usoChips button").forEach(b=>b.addEventListener("click",()=>{
+  $$("button",b.parentNode).forEach(x=>x.classList.remove("on"));b.classList.add("on");}));
+
+const leadForm=$("leadForm");
+if(leadForm)leadForm.addEventListener("submit",e=>{e.preventDefault();enviar("visita");});
+const btnCosto=$("btnCosto");
+if(btnCosto)btnCosto.addEventListener("click",()=>enviar("costo"));
+
+/* ===== Calculadora (solo en calculadora.html) ===== */
 let cK="1";
-const cEls=["cPrecio","cIni","cTasa","cPlazo"].map($);
 function calc(){
-  const lista=parseFloat($("cPrecio").value)||0, ini=+$("cIni").value/100, tasa=parseFloat($("cTasa").value)||0, yrs=+$("cPlazo").value;
+  const precioEl=$("cPrecio"),iniEl=$("cIni"),tasaEl=$("cTasa"),plazoEl=$("cPlazo");
+  if(!precioEl||!iniEl||!tasaEl||!plazoEl)return;
+  const lista=parseFloat(precioEl.value)||0, ini=+iniEl.value/100, tasa=parseFloat(tasaEl.value)||0, yrs=+plazoEl.value;
   $("cIniV").textContent=Math.round(ini*100)+"%"; $("oIniP").textContent=Math.round(ini*100)+"%";
   $("cPlazoV").textContent=yrs+" años"; $("oCuotaSub").textContent="durante "+yrs+" años ("+yrs*12+" cuotas) a "+tasa.toLocaleString("es-DO")+"% anual";
   if(!lista){["oCuota","oLista","oDesc","oFinal","oIni","oPrest","oIngreso"].forEach(id=>$(id).textContent="—");
@@ -63,29 +82,58 @@ function calc(){
 }
 function setCalcTipo(k){
   cK=k;
-  document.querySelectorAll("#cTipos button").forEach(b=>b.classList.toggle("on",b.dataset.k===k)); const d=data[k];
-  if(d.precio){$("cPrecio").value=d.precio;$("cPrecioNota").textContent="Precio de lista. El descuento de US$"+descuentos[k].toLocaleString("en-US")+" se aplica en el resultado.";}
-  else{$("cPrecio").value="";$("cPrecioNota").innerHTML='<span class="ph">Precio por confirmar</span> Escribe el precio que te cotizaron.';}
+  $$("#cTipos button").forEach(b=>b.classList.toggle("on",b.dataset.k===k));
+  const precioEl=$("cPrecio"),nota=$("cPrecioNota"),d=data[k];
+  if(!precioEl)return;
+  if(d.precio){precioEl.value=d.precio;if(nota)nota.textContent="Precio de lista. El descuento de US$"+descuentos[k].toLocaleString("en-US")+" se aplica en el resultado.";}
+  else{precioEl.value="";if(nota)nota.innerHTML='<span class="ph">Precio por confirmar</span> Escribe el precio que te cotizaron.';}
   calc();
 }
-document.querySelectorAll("#cTipos button").forEach(b=>b.addEventListener("click",()=>pick(b.dataset.k)));
-cEls.forEach(el=>el.addEventListener("input",calc));
-$("calcForm").addEventListener("submit",e=>e.preventDefault());
+$$("#cTipos button").forEach(b=>b.addEventListener("click",()=>pick(b.dataset.k)));
+["cPrecio","cIni","cTasa","cPlazo"].forEach(id=>{const el=$(id);if(el)el.addEventListener("input",calc);});
+const calcForm=$("calcForm");
+if(calcForm)calcForm.addEventListener("submit",e=>e.preventDefault());
 
-$("gPrev").addEventListener("click",()=>showFoto(gI-1));
-$("gNext").addEventListener("click",()=>showFoto(gI+1));
-document.querySelectorAll(".pimg img").forEach(im=>im.addEventListener("click",()=>{$("lbImg").src=im.src;$("lbImg").alt=im.alt;$("lb").hidden=false;}));
-$("lb").addEventListener("click",()=>{$("lb").hidden=true;});
-document.addEventListener("keydown",e=>{if(e.key==="Escape")$("lb").hidden=true;});
+/* ===== Galería de precios y visor de planos ===== */
+const gPrev=$("gPrev"),gNext=$("gNext");
+if(gPrev)gPrev.addEventListener("click",()=>showFoto(gI-1));
+if(gNext)gNext.addEventListener("click",()=>showFoto(gI+1));
+$$(".pimg img").forEach(im=>im.addEventListener("click",()=>{
+  const lb=$("lb"),lbImg=$("lbImg"); if(!lb||!lbImg)return;
+  lbImg.src=im.src;lbImg.alt=im.alt;lb.hidden=false;
+}));
+const lb=$("lb");
+if(lb)lb.addEventListener("click",()=>{lb.hidden=true;});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&$("lb"))$("lb").hidden=true;});
 
 /* ===== Hero: las fotos 2 y 3 se cargan cuando la página terminó de cargar ===== */
 (function(){
-  const sl=[...document.querySelectorAll(".hbg .hs")],dt=[...document.querySelectorAll(".hdots .hd")];let h=0,t;
+  const sl=$$(".hbg .hs"),dt=$$(".hdots .hd");
+  if(!sl.length||!dt.length)return;
+  let h=0,t;
   function load(){sl.forEach(i=>{if(i.dataset.src){i.src=i.dataset.src;delete i.dataset.src;}});}
   if(document.readyState==="complete")load();else addEventListener("load",load);
   function go(n){sl[h].classList.remove("on");dt[h].classList.remove("on");h=(n+sl.length)%sl.length;sl[h].classList.add("on");dt[h].classList.add("on");}
   function start(){clearInterval(t);if(!matchMedia("(prefers-reduced-motion: reduce)").matches)t=setInterval(()=>go(h+1),5000);}
   dt.forEach((d,i)=>d.addEventListener("click",()=>{load();go(i);start();}));start();
+})();
+
+/* ===== Menú móvil / tablet ===== */
+(function(){
+  const toggle=document.querySelector(".navtoggle"),links=document.querySelector(".navlinks");
+  if(!toggle||!links)return;
+  function setOpen(open){
+    toggle.setAttribute("aria-expanded",open?"true":"false");
+    toggle.setAttribute("aria-label",open?"Cerrar menú":"Abrir menú");
+    links.classList.toggle("open",open);
+  }
+  toggle.addEventListener("click",()=>setOpen(toggle.getAttribute("aria-expanded")!=="true"));
+  links.addEventListener("click",e=>{if(e.target.closest("a"))setOpen(false);});
+  document.addEventListener("keydown",e=>{if(e.key==="Escape")setOpen(false);});
+  document.addEventListener("click",e=>{if(!e.target.closest("nav.top"))setOpen(false);});
+  const mq=matchMedia("(min-width:861px)");
+  const onChange=()=>{if(mq.matches)setOpen(false);};
+  if(mq.addEventListener)mq.addEventListener("change",onChange);else if(mq.addListener)mq.addListener(onChange);
 })();
 
 /* ===== Campaña de origen (UTM) ===== */
@@ -97,7 +145,8 @@ const utm=(function(){
 
 /* ===== Formulario de contacto ===== */
 function enviar(intencion){
-  const f=$("leadForm"), sent=$("sent");
+  const f=$("leadForm"); if(!f)return;
+  const sent=$("sent");
   const nombre=f.nombre.value.trim(), wa=f.whatsapp.value.replace(/[^\d+]/g,"");
   const msg=(t,err)=>{sent.hidden=false;sent.textContent=t;sent.classList.toggle("err",!!err);};
   if(f.web.value)return;                      // trampa para bots
@@ -111,7 +160,7 @@ function enviar(intencion){
     "\nPresupuesto: "+d.presupuesto+"\nTipo de visita: "+d.visita+"\nEntrega: "+d.entrega+"\nHorario: "+d.horario;
   const abrirWA=()=>{window.open("https://wa.me/"+CONFIG.whatsapp+"?text="+encodeURIComponent(texto),"_blank","noopener");};
   const btns=f.querySelectorAll("button.btn");btns.forEach(b=>b.disabled=true);
-  const fin=ok=>{btns.forEach(b=>b.disabled=false);if(ok){f.reset();document.querySelectorAll("#usoChips button").forEach(x=>x.classList.remove("on"));pick("1");}};
+  const fin=ok=>{btns.forEach(b=>b.disabled=false);if(ok){f.reset();$$("#usoChips button").forEach(x=>x.classList.remove("on"));pick("1");}};
   if(CONFIG.endpoint){
     fetch(CONFIG.endpoint,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(d)})
       .then(r=>{if(!r.ok)throw 0;msg("¡Gracias, "+nombre.split(" ")[0]+"! Un asesor te contactará muy pronto.");fin(true);})
