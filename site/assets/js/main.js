@@ -90,13 +90,12 @@ function calc(){
   const lista=parseFloat(precioEl.value)||0, ini=+iniEl.value/100, tasa=parseFloat(tasaEl.value)||0, yrs=+plazoEl.value;
   $("cIniV").textContent=Math.round(ini*100)+"%"; $("oIniP").textContent=Math.round(ini*100)+"%";
   $("cPlazoV").textContent=yrs+" años"; $("oCuotaSub").textContent="durante "+yrs+" años ("+yrs*12+" cuotas) a "+tasa.toLocaleString("es-DO")+"% anual";
-  if(!lista){["oCuota","oLista","oDesc","oFinal","oIni","oPrest","oIngreso"].forEach(id=>$(id).textContent="—");
+  if(!lista){["oCuota","oLista","oDesc","oFinal","oIni","oPrest"].forEach(id=>$(id).textContent="—");
     $("barI").style.width="0";$("barF").style.width="0";return;}
   const D=Math.min(descuentos[cK]||0,lista), P=lista-D, I=P*ini, L=P-I, n=yrs*12, r=tasa/100/12;
   const cuota= r>0 ? L*r/(1-Math.pow(1+r,-n)) : L/n;
   $("oCuota").textContent=fmt(cuota); $("oLista").textContent=fmt(lista); $("oDesc").textContent="−"+fmt(D);
   $("oFinal").textContent=fmt(P); $("oIni").textContent=fmt(I); $("oPrest").textContent=fmt(L);
-  $("oIngreso").textContent=fmt(cuota/0.30);
   $("barI").style.width=(ini*100)+"%"; $("barF").style.width=((1-ini)*100)+"%";
 }
 function setCalcTipo(k){
