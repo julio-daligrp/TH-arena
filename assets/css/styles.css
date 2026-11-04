@@ -86,6 +86,7 @@ nav.top .wrap{display:flex;align-items:center;justify-content:space-between;heig
 .facts span{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.8}
 .facts b{font-size:28px;line-height:1.1;font-weight:800}
 .facts small{font-size:13px;opacity:.85;line-height:1.35}
+.facts .factseal{width:78px;height:78px;margin-top:2px;flex:none}
 @media(max-width:600px){.facts{grid-template-columns:1fr 1fr}.facts div:nth-child(3){grid-column:1/-1;border-left:0;padding-left:0;border-top:1px solid rgba(255,255,255,.25)}.facts div{padding:14px 12px}.facts b{font-size:24px}}
 .ctas{display:flex;gap:12px;flex-wrap:wrap}
 .ctas .btn{justify-content:center}
