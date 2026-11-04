@@ -6,7 +6,7 @@ const CONFIG={
 const descuentos={"1":6000,"2":8000,"3":10000};
 const fotos={"3":[{"src": "assets/img/apto-3h-01.webp", "cap": "Comedor, cocina y sala"}, {"src": "assets/img/apto-3h-02.webp", "cap": "Comedor y recibidor"}, {"src": "assets/img/apto-3h-03.webp", "cap": "Habitación principal"}, {"src": "assets/img/apto-3h-04.webp", "cap": "Habitación 2"}, {"src": "assets/img/apto-3h-05.webp", "cap": "Habitación 3"}],"1":[{"src": "assets/img/apto-1h-01.webp", "cap": "Comedor y sala"}, {"src": "assets/img/apto-1h-02.webp", "cap": "Comedor y sala"}, {"src": "assets/img/apto-1h-03.webp", "cap": "Sala"}, {"src": "assets/img/apto-1h-04.webp", "cap": "Habitación"}, {"src": "assets/img/apto-1h-05.webp", "cap": "Habitación"}, {"src": "assets/img/apto-1h-06.webp", "cap": "Cocina"}, {"src": "assets/img/apto-1h-07.webp", "cap": "Baño"}],"2":[{"src": "assets/img/apto-2h-01.webp", "cap": "Sala, comedor y cocina"}, {"src": "assets/img/apto-2h-02.webp", "cap": "Comedor y sala"}, {"src": "assets/img/apto-2h-03.webp", "cap": "Habitación principal"}, {"src": "assets/img/apto-2h-04.webp", "cap": "Segunda habitación"}]};
 const data={
-  "1":{tipo:"Tipo B",nombre:"1 habitación",m2:"49 m²",precio:88075.55,banos:"1",mant:"RD$2,530"},
+  "1":{tipo:"Tipo B",nombre:"1 habitación",m2:"49 m²",precio:88075,banos:"1",mant:"RD$2,530"},
   "2":{tipo:"Tipo A",nombre:"2 habitaciones",m2:"69 m²",precio:119265,banos:"2",mant:"RD$3,560"},
   "3":{tipo:"Tipo C",nombre:"3 habitaciones",m2:"105 m²",precio:148810,banos:"2",mant:"RD$5,416"}
 };
@@ -14,7 +14,7 @@ const $=id=>document.getElementById(id);
 const $$=(sel,root=document)=>Array.from(root.querySelectorAll(sel));
 const fmt=n=>"$"+n.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
 
-let gK="1",gI=0;
+let gK="1",gI=0,pMode="disc";
 function showFoto(i){
   const list=fotos[gK]||[]; if(!list.length)return;
   const img=$("gImg"),cap=$("planCap"); if(!img||!cap)return;
@@ -41,20 +41,39 @@ function pick(k){
   if(banos)banos.textContent=d.banos;
   setGaleria(k);
   setCalcTipo(k);
-  const precioTxt=$("precioTxt"),pDisc=$("pDisc"),pMant=$("pMant");
-  if(precioTxt&&pDisc&&pMant){
-    if(d.precio){
-      precioTxt.textContent=fmt(d.precio);
-      pDisc.textContent="Descuento de US$"+descuentos[k].toLocaleString("en-US");
-      pMant.textContent=d.mant;
-    }else{
-      precioTxt.innerHTML='<span class="ph">$000,000</span><small>Precio por confirmar con ventas</small>';
-    }
+  renderPrecio(k);
+}
+function renderPrecio(k){
+  const d=data[k],precioTxt=$("precioTxt"),pDisc=$("pDisc"),pMant=$("pMant");
+  if(!precioTxt||!pDisc||!pMant)return;
+  if(!d.precio){
+    precioTxt.innerHTML='<span class="ph">$000,000</span><small>Precio por confirmar con ventas</small>';
+    pDisc.hidden=true;
+    return;
   }
+  const desc=descuentos[k]||0, final=d.precio-desc;
+  if(pMode==="disc"){
+    precioTxt.innerHTML=fmt(final)+' <s>'+fmt(d.precio)+'</s>';
+    pDisc.textContent="Ahorras US$"+desc.toLocaleString("en-US");
+  }else{
+    precioTxt.textContent=fmt(d.precio);
+    pDisc.textContent="Descuento de US$"+desc.toLocaleString("en-US");
+  }
+  pDisc.hidden=false;
+  pMant.textContent=d.mant;
 }
 
 $$("#tabs button").forEach(b=>b.addEventListener("click",()=>pick(b.dataset.k)));
 $$("#habChips button").forEach((b,i)=>b.addEventListener("click",()=>pick(String(i+1))));
+$$("#priceMode button").forEach(b=>b.addEventListener("click",()=>{
+  pMode=b.dataset.mode;
+  $$("#priceMode button").forEach(x=>{
+    const on=x.dataset.mode===pMode;
+    x.classList.toggle("on",on);
+    x.setAttribute("aria-pressed",on?"true":"false");
+  });
+  renderPrecio(gK);
+}));
 $$("#usoChips button").forEach(b=>b.addEventListener("click",()=>{
   $$("button",b.parentNode).forEach(x=>x.classList.remove("on"));b.classList.add("on");}));
 

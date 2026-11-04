@@ -123,6 +123,12 @@ nav.top .wrap{display:flex;align-items:center;justify-content:space-between;heig
 @media(max-width:600px){.pricecard .info .ctas{grid-template-columns:1fr}}
 .price{font-size:38px;font-weight:800;color:var(--heading);line-height:1.1;font-variant-numeric:tabular-nums}
 .price small{display:block;font-size:13px;font-weight:500;color:var(--muted);margin-top:6px}
+.pmodes{display:inline-grid;grid-template-columns:repeat(2,auto);gap:2px;background:var(--soft);border-radius:999px;padding:3px;align-self:flex-start;margin-bottom:-8px}
+.pmodes button{border:0;background:none;padding:7px 13px;border-radius:999px;font:inherit;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;white-space:nowrap}
+.pmodes button.on{background:var(--heading);color:var(--bg)}
+.price s{font-size:17px;font-weight:600;color:var(--muted);margin-left:10px;text-decoration-thickness:2px}
+.pdisc[hidden]{display:none}
+@media(max-width:600px){.pmodes button{padding:7px 10px;font-size:12px}.price s{font-size:14px;margin-left:6px}}
 .info .tag{margin-bottom:-12px}
 .specs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .specs div{background:var(--soft);border-radius:10px;padding:12px 14px;font-size:13px;color:var(--muted)}
