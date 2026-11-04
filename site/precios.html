@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="assets/css/styles.css?v=20261105">
+<link rel="stylesheet" href="assets/css/styles.css?v=20261106">
 </head>
 <body>
 <a class="skip" href="#main">Saltar al contenido</a>
@@ -70,6 +70,10 @@
       </div>
       <div class="info">
         <div class="tag" id="tipo">Tipo B</div>
+        <div class="pmodes" id="priceMode" role="group" aria-label="Mostrar precio con o sin descuento">
+          <button type="button" data-mode="list" aria-pressed="false">Sin descuento</button>
+          <button type="button" data-mode="disc" class="on" aria-pressed="true">Con descuento</button>
+        </div>
         <div class="price" id="precioTxt"></div>
         <span class="pdisc" id="pDisc">Descuento de US$6,000</span>
         <div class="specs">
@@ -119,6 +123,6 @@
   <a class="btn btn-outline" href="precios.html">Precios</a>
 </div>
 
-<script src="assets/js/main.js" defer></script>
+<script src="assets/js/main.js?v=20261106" defer></script>
 </body>
 </html>
