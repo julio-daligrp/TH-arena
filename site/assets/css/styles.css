@@ -269,6 +269,14 @@ footer{padding-block:28px;font-size:13px;color:var(--muted)}
 .cfmark{background:#1f8a4c!important}
 .seal{border-radius:50%;background:#fff;display:block;object-fit:contain}
 .bankbar .seal{width:52px;height:52px;flex:none}
+.badges .bankbar.confotur{flex:1 1 100%;align-items:flex-start}
+.confotur .cbody{display:flex;flex-direction:column;gap:6px;min-width:0}
+.confotur .cintro{margin:0;font-size:14px;line-height:1.5;color:var(--muted)}
+.confotur .cintro b{color:var(--heading)}
+.confotur .cbenefits{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 22px;margin:2px 0 0;padding:0;font-size:14px;line-height:1.4}
+.confotur .cbenefits li{position:relative;padding-left:20px}
+.confotur .cbenefits li::before{content:"✓";position:absolute;left:0;top:0;color:#1f8a4c;font-weight:800}
+@media(max-width:700px){.confotur .cbenefits{grid-template-columns:1fr}}
 .trustrow{display:flex;align-items:center;gap:12px;margin-bottom:26px}
 .trustrow .bank{margin-bottom:0}
 .trustrow .bank{height:56px}
