@@ -116,7 +116,7 @@ if(calcForm)calcForm.addEventListener("submit",e=>e.preventDefault());
 const gPrev=$("gPrev"),gNext=$("gNext");
 if(gPrev)gPrev.addEventListener("click",()=>showFoto(gI-1));
 if(gNext)gNext.addEventListener("click",()=>showFoto(gI+1));
-$$(".pimg img").forEach(im=>im.addEventListener("click",()=>{
+$$(".pimg img, .ggal img").forEach(im=>im.addEventListener("click",()=>{
   const lb=$("lb"),lbImg=$("lbImg"); if(!lb||!lbImg)return;
   lbImg.src=im.src;lbImg.alt=im.alt;lb.hidden=false;
 }));
