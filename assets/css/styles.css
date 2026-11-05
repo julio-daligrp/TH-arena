@@ -297,6 +297,12 @@ footer{padding-block:28px;font-size:13px;color:var(--muted)}
 .routes2 em{display:block;font-style:normal;font-size:12px;color:var(--muted);font-weight:400}
 @media(max-width:820px){.routes2{grid-template-columns:1fr 1fr}}
 @media(max-width:480px){.routes2{grid-template-columns:1fr}}
+.airportbox{display:flex;align-items:center;gap:14px;margin-top:16px;padding:14px 18px;border:1px solid var(--line);border-left:4px solid var(--orange);border-radius:12px;background:var(--card)}
+.airportbox .min{font-size:24px;font-weight:800;color:var(--heading);font-variant-numeric:tabular-nums;min-width:56px}
+.airportbox .min small{font-size:12px;font-weight:500;color:var(--muted)}
+.airportbox span{font-size:14px;font-weight:600}
+.airportbox em{display:block;font-style:normal;font-size:12px;color:var(--muted);font-weight:400}
+.airportbox svg{margin-left:auto;color:var(--orange);flex:none}
 /* calculadora */
 #calc{background:var(--soft)}
 .calc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:24px;align-items:stretch}
