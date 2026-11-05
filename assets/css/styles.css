@@ -237,11 +237,7 @@ footer{padding-block:28px;font-size:13px;color:var(--muted)}
 .bank{display:inline-flex;align-items:center;gap:10px;background:#fff;color:#0b3a75;border-radius:12px;padding:10px 16px;margin-bottom:22px;font-size:14px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
 .bank{color:#1d2733}
 .bplogo{display:block;height:36px;width:auto;border-radius:6px}
-.bankbar .bplogo{height:44px;flex:none}
 .bank .bmark{width:28px;height:28px;border-radius:7px;background:#0b3a75;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px}
-.bankbar{display:flex;align-items:center;gap:12px;background:var(--card);border:2px solid var(--navy);border-radius:14px;padding:14px 18px;margin-bottom:24px;font-size:15px}
-.bankbar .bmark{width:34px;height:34px;border-radius:8px;background:#0b3a75;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;flex:none}
-.bankbar b{color:var(--heading)}
 .tipos{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .tipos button{align-content:start;font:inherit;text-align:left;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:12px;padding:12px;cursor:pointer;display:grid;gap:2px}
 .tipos button small{font-size:12px;color:var(--muted);font-weight:500}
@@ -266,19 +262,39 @@ footer{padding-block:28px;font-size:13px;color:var(--muted)}
 .pcard figcaption small{color:var(--muted);font-size:12px}
 @media(max-width:820px){.planos{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.pcard figcaption{padding:10px;font-size:12px}.pcard figcaption small{font-size:11px}}
 @media(max-width:520px){.planos{grid-template-columns:1fr 1fr}}
-.badges{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:24px}
-.badges .bankbar{margin-bottom:0;flex:1 1 300px}
+.badges{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-bottom:24px;align-items:start}
+.badge{background:var(--card);border:2px solid var(--navy);border-radius:16px;overflow:hidden;padding:0;transition:box-shadow .2s,border-color .2s}
+.badge[open]{box-shadow:0 12px 30px rgba(10,30,60,.12)}
+.badge summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:center;min-height:158px;padding:26px 22px;position:relative;background:#fff;outline:none}
+.badge summary::-webkit-details-marker{display:none}
+.badge summary::after{content:"+";position:absolute;right:12px;bottom:12px;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:600;line-height:1;transition:transform .2s}
+.badge[open] summary::after{content:"−"}
+.badge summary:hover::after{transform:scale(1.08)}
+.badge summary:focus-visible{outline:3px solid var(--orange);outline-offset:-3px;border-radius:14px}
+.badge .bplogo{height:auto;width:100%;max-width:230px;border-radius:8px}
+.badge .seal{width:104px;height:104px;max-width:100%}
+.badge .bbody{padding:16px 18px 20px;border-top:1px solid var(--line);font-size:15px;line-height:1.55;animation:badgeIn .25s ease}
+.badge .bbody b{color:var(--heading)}
+.badge .bbody>p{margin:0 0 9px}
+.badge .bbody>p:last-child{margin-bottom:0}
+@keyframes badgeIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
 .cfmark{background:#1f8a4c!important}
 .seal{border-radius:50%;background:#fff;display:block;object-fit:contain}
-.bankbar .seal{width:52px;height:52px;flex:none}
-.badges .bankbar.confotur{flex:1 1 100%;align-items:flex-start}
-.confotur .cbody{display:flex;flex-direction:column;gap:6px;min-width:0}
+.confotur .cbody{display:flex;flex-direction:column;gap:7px;min-width:0}
 .confotur .cintro{margin:0;font-size:14px;line-height:1.5;color:var(--muted)}
 .confotur .cintro b{color:var(--heading)}
 .confotur .cbenefits{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 22px;margin:2px 0 0;padding:0;font-size:14px;line-height:1.4}
 .confotur .cbenefits li{position:relative;padding-left:20px}
 .confotur .cbenefits li::before{content:"✓";position:absolute;left:0;top:0;color:#1f8a4c;font-weight:800}
 @media(max-width:700px){.confotur .cbenefits{grid-template-columns:1fr}}
+@media(max-width:520px){
+  .badges{gap:10px}
+  .badge summary{min-height:126px;padding:16px 12px}
+  .badge .bplogo{max-width:100%}
+  .badge .seal{width:80px;height:80px}
+  .badge .bbody{padding:12px;font-size:14px}
+  .badge summary::after{right:8px;bottom:8px;width:24px;height:24px;font-size:17px}
+}
 .trustrow{display:flex;align-items:center;gap:12px;margin-bottom:26px}
 .trustrow .bank{margin-bottom:0}
 .trustrow .bank{height:56px}
