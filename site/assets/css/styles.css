@@ -62,7 +62,7 @@ nav.top .wrap{display:flex;align-items:center;justify-content:space-between;heig
 .promo a{font-size:15px;font-weight:700;background:#fff;color:#132b44;text-decoration:none;padding:10px 20px;border-radius:999px;letter-spacing:0}
 
 .hero{position:relative;display:flex;align-items:flex-end;color:#fff;border:0;padding-block:0;
-  background:#132b44 url("assets/img/hero-1.webp") center/cover no-repeat;overflow:hidden}
+  background:#132b44 url("../img/hero-1.webp") center/cover no-repeat;overflow:hidden}
 .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,25,40,.35) 0%,rgba(10,25,40,.55) 45%,rgba(10,25,40,.88) 100%)}
 .hvideo{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:#132b44}
 .hvideo iframe{position:absolute;top:50%;left:50%;width:100vw;height:56.25vw;min-width:177.78vh;min-height:100%;border:0;transform:translate(-50%,-50%);pointer-events:none;opacity:0;transition:opacity .8s ease}
